@@ -10,6 +10,8 @@ public class MoveSocketManager : MonoBehaviour {
     void Awake() {
         MoveSocket = new Client(url);
         MoveSocket.Opened += SocketOpened;
+        MoveSocket.Message += SocketMessage;
+        MoveSocket.SocketConnectionClosed += SocketConnectionClosed;
         MoveSocket.Connect();
     }
 
@@ -18,10 +20,19 @@ public class MoveSocketManager : MonoBehaviour {
         Debug.Log("Socket Opened");
     }
 
-    public void SocketError(object sender, System.EventArgs e)
+    private void SocketMessage(object sender, MessageEventArgs e)
     {
-        Debug.Log(e);
+        Debug.Log("Socket Message!");
+    }
 
+    private void SocketConnectionClosed(object sender, System.EventArgs e)
+    {
+        Debug.Log("Socket Connection Closed!");
+    }
+
+    private void SocketError(object sender, ErrorEventArgs e)
+    {
+        Debug.Log(e.Message);
     }
 
     void OnDisable()
