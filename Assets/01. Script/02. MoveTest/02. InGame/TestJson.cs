@@ -55,28 +55,28 @@ public class TestJson : MonoBehaviour {
 	void Update () {
 
         //핸드폰 조작 시 2
-        //if (Input.touchCount > 0)
-        //{
-        //    scrSpace = Camera.main.WorldToScreenPoint(transform.position);
-        //    offset = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, scrSpace.y, scrSpace.z));
+        if (Input.touchCount > 0)
+        {
+            scrSpace = Camera.main.WorldToScreenPoint(transform.position);
+            offset = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, scrSpace.y, scrSpace.z));
 
-        //    if (Input.GetTouch(0).phase == TouchPhase.Began)
-        //    {
-        //        scrSpace = Camera.main.WorldToScreenPoint(transform.position);
-        //        offset = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, scrSpace.y, scrSpace.z));
-        //    }
-        //    else if (Input.GetTouch(0).phase == TouchPhase.Moved)
-        //    {
-        //        transform.position += (new Vector3(offset.x, transform.position.y, transform.position.z) - transform.position) * 0.1f;
-        //    }
-        //    else if (Input.GetTouch(0).phase == TouchPhase.Ended)
-        //    {
-        //        scrSpace = Vector3.zero;
-        //        offset = Vector3.zero;
-        //    }
-        //    transform.position += (new Vector3(offset.x, transform.position.y, transform.position.z) - transform.position) * 0.1f;
-        //    RenewalPosition();
-        //}
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                scrSpace = Camera.main.WorldToScreenPoint(transform.position);
+                offset = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, scrSpace.y, scrSpace.z));
+            }
+            else if (Input.GetTouch(0).phase == TouchPhase.Moved)
+            {
+                transform.position += (new Vector3(offset.x, transform.position.y, transform.position.z) - transform.position) * 0.1f;
+            }
+            else if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            {
+                scrSpace = Vector3.zero;
+                offset = Vector3.zero;
+            }
+            transform.position += (new Vector3(offset.x, transform.position.y, transform.position.z) - transform.position) * 0.1f;
+            RenewalPosition();
+        }
 
 
 
@@ -104,19 +104,19 @@ public class TestJson : MonoBehaviour {
 
 
         //마우스로 조작 할 때////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if (Input.GetMouseButtonDown(0))
-        {
-            scrSpace = Camera.main.WorldToScreenPoint(transform.position);
-            offset = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, scrSpace.y, scrSpace.z));
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    scrSpace = Camera.main.WorldToScreenPoint(transform.position);
+        //    offset = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, scrSpace.y, scrSpace.z));
+        //}
 
-        beforePos = transform.position;
-        transform.position += (new Vector3(offset.x, transform.position.y, transform.position.z) - transform.position) * 0.1f;
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if (beforePos != transform.position)
-        {
-            RenewalPosition();
-        }
+        //beforePos = transform.position;
+        //transform.position += (new Vector3(offset.x, transform.position.y, transform.position.z) - transform.position) * 0.1f;
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //if (beforePos != transform.position)
+        //{
+        //    RenewalPosition();
+        //}
     }
 
     void RenewalPosition() {
